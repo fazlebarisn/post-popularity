@@ -1,0 +1,6 @@
+#like_dislike{
+    display: flex;
+    justify-content: space-around;
+    flex: 1;
+    list-style: none;
+}
