@@ -6,7 +6,7 @@
 /*
 Plugin Name: Fbs Post Popularity
 Plugin URI: https://github.com/fazlebarisn/post-popularity
-Description: My New Plugin
+Description: This plugin help you to like or dislike a post
 Version: 1.0.0
 Author: Fazle Bari
 Author URI: https://github.com/fazlebarisn/
@@ -39,9 +39,13 @@ function deactivate_post_popularily_plugin(){
 
 register_deactivation_hook( __FILE__, 'deactivate_post_popularily_plugin');
 
+/**
+ * Initialize all the core classess of the plugin
+ */
+if (class_exists("Inc\\Init")) {
+	Inc\Init::register_services();
+}
 
-define( 'PLUGIN_PATH' , plugin_dir_path( __FILE__ ) );
-define( 'PLUGIN_URL' , plugin_dir_url(__FILE__) );
 define( 'TABLE_NAME' , 'postpopularity' );
 
 class FbsPostPopularity{
@@ -60,7 +64,6 @@ class FbsPostPopularity{
     private function __construct(){
         
         add_filter( 'the_content', array( $this , 'add_likes_dislikes' ) );
-        add_action( 'wp_enqueue_scripts', array( $this , 'enqueue_scripts' ) );
         add_action( 'wp_ajax_likes_dislikes_action', array( $this , 'likes_dislikes_action') );
         add_action( 'wp_ajax_nopriv_likes_dislikes_action',  array( $this , 'likes_dislikes_action') );
 
@@ -113,18 +116,6 @@ class FbsPostPopularity{
         ));
 
         wp_die();
-    }
-
-    public function enqueue_scripts(){
-
-        global $post;
-        wp_enqueue_style( 'likes_dislikes_style', PLUGIN_URL."assets/css/app.css" );
-        wp_enqueue_script( 'likes_dislikes_script', PLUGIN_URL."assets/js/app.js", array('jquery'), '1.0.0', true );
-        wp_localize_script( 'likes_dislikes_script', 'ajax_object', array(
-            'url' => admin_url('admin-ajax.php'),
-            'post' => $post->ID
-        ));
-
     }
 
     public function add_likes_dislikes( $content ){
