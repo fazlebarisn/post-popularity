@@ -5,11 +5,11 @@
 
 /*
 Plugin Name: Fbs Post Popularity
-Plugin URI: https://www.chitabd.com/
+Plugin URI: https://github.com/fazlebarisn/post-popularity
 Description: My New Plugin
 Version: 1.0.0
 Author: Fazle Bari
-Author URI: https://www.chitabd.com/
+Author URI: https://github.com/fazlebarisn/
 Licence: GPL Or leater
 Text Domain: post-popularity
 */
