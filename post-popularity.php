@@ -20,6 +20,26 @@ User can like or dislike a post
 
 defined('ABSPATH') or die('Nice Try!');
 
+if( file_exists(dirname( __FILE__ ). '/vendor/autoload.php')){
+	require_once dirname( __FILE__ ). '/vendor/autoload.php';
+}
+
+
+// Active Plugin
+function activate_post_popularily_plugin(){
+	Inc\Base\Activate::activate();
+}
+
+register_activation_hook( __FILE__, 'activate_post_popularily_plugin');
+
+// Deactive Plugin
+function deactivate_post_popularily_plugin(){
+	Inc\Base\Deactivate::deactivate();
+}
+
+register_deactivation_hook( __FILE__, 'deactivate_post_popularily_plugin');
+
+
 define( 'PLUGIN_PATH' , plugin_dir_path( __FILE__ ) );
 define( 'PLUGIN_URL' , plugin_dir_url(__FILE__) );
 define( 'TABLE_NAME' , 'postpopularity' );
@@ -131,49 +151,6 @@ class FbsPostPopularity{
         return $content;
     }
 
-    public static function do_activate( $network_wide ){
-
-        if( ! current_user_can( 'activate_plugins' ) ){
-            return;
-        }
-
-        global $wpdb;
-        $table = $wpdb->prefix.TABLE_NAME;
-        $collate = $wpdb->get_charset_collate();
-        $sql = "CREATE TABLE IF NOT EXISTS `{$table}` (
-            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-            `user_id` int(11) DEFAULT NULL,
-            `post_id` int(11) DEFAULT NULL,
-            `likes` int(11) DEFAULT 0,
-            `dislikes` int(11) DEFAULT 0,
-            `date_created` timestamp DEFAULT NOW(),
-            PRIMARY KEY (`id`)
-        ){$collate};";
-
-        require_once( ABSPATH.'wp-admin/includes/upgrade.php');
-        dbDelta( $sql );
-        
-        // $plugin = isset( $_REQUEST['plugin'] ) ? isset( $_REQUEST['plugin'] ) : '';
-        // var_dump($_REQUEST['plugin']); exit;
-        // check_admin_referer( "activate-plugin_{$plugin}" );
-
-    }
-
-    public static function do_deactivate( $network_wide ){
-
-        if( ! current_user_can( 'activate_plugins') ){
-            return;
-        }
-
-        global $wpdb;
-        $table = $wpdb->prefix.TABLE_NAME;
-        $sql = "TRUNCATE TABLE `{$table}`";
-        $wpdb->query( $sql );
-
-        //$plugin = isset( $_REQUEST['plugin'] ) ? isset( $_REQUEST['plugin'] ) : '';
-        //check_admin_referer( "deactivate-plugin_{$plugin}" );
-    
-    }
 
 }
 
