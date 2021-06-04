@@ -1,0 +1,14 @@
+{
+    "name": "sony/post-popularity",
+    "description": "You can like or dislike a post. A mini wordpress plugin",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Fazle Bari",
+            "email": "fazlebarisn@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
