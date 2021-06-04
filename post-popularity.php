@@ -175,22 +175,6 @@ class FbsPostPopularity{
     
     }
 
-    public static function do_uninstall( $network_wide ){
-
-        if( ! current_user_can( 'activate_plugins') )
-            return;
-
-        global $wpdb;
-        $table = $wpdb->prefix.TABLE_NAME;
-        $sql = "DROP TABLE `{$table}`";
-        $wpdb->query( $sql );
-  
-        check_admin_referer( 'bulk-plugins' );
-
-        if( __FILE__ != WP_UNINSTALL_PLUGIN )
-            return;
-    }
-
 }
 
 //new FbsPostPopularity;
@@ -199,6 +183,3 @@ add_action( 'plugins_loaded',  'FbsPostPopularity::instance' );
 
 register_activation_hook( __FILE__, 'FbsPostPopularity::do_activate' );
 register_deactivation_hook( __FILE__, 'FbsPostPopularity::do_deactivate' );
-//register_uninstall_hook( __FILE__, 'FbsPostPopularity::do_uninstall' );
-
-// this is testing thing abo
