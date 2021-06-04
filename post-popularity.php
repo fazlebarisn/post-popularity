@@ -184,7 +184,7 @@ class FbsPostPopularity{
         $table = $wpdb->prefix.TABLE_NAME;
         $sql = "DROP TABLE `{$table}`";
         $wpdb->query( $sql );
-
+  
         check_admin_referer( 'bulk-plugins' );
 
         if( __FILE__ != WP_UNINSTALL_PLUGIN )
@@ -200,3 +200,5 @@ add_action( 'plugins_loaded',  'FbsPostPopularity::instance' );
 register_activation_hook( __FILE__, 'FbsPostPopularity::do_activate' );
 register_deactivation_hook( __FILE__, 'FbsPostPopularity::do_deactivate' );
 //register_uninstall_hook( __FILE__, 'FbsPostPopularity::do_uninstall' );
+
+// this is testing thing abo
