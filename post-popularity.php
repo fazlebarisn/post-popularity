@@ -154,9 +154,3 @@ class FbsPostPopularity{
 
 }
 
-//new FbsPostPopularity;
-
-add_action( 'plugins_loaded',  'FbsPostPopularity::instance' );
-
-register_activation_hook( __FILE__, 'FbsPostPopularity::do_activate' );
-register_deactivation_hook( __FILE__, 'FbsPostPopularity::do_deactivate' );
