@@ -1,6 +1,6 @@
 <?php
 
-namespace Inc\Base;
+namespace Inc\LikeDislike;
 
 
 class LikeDislikeAction
