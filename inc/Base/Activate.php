@@ -10,7 +10,7 @@ class Activate
         if( ! current_user_can( 'activate_plugins' ) ){
             return;
         }
-        define( 'TABLE_NAME' , 'postpopularity' );
+ 
         global $wpdb;
         $table = $wpdb->prefix.TABLE_NAME;
         $collate = $wpdb->get_charset_collate();
@@ -26,6 +26,8 @@ class Activate
 
         require_once( ABSPATH.'wp-admin/includes/upgrade.php');
         dbDelta( $sql );
+
+        flush_rewrite_rules();
 
     }
 

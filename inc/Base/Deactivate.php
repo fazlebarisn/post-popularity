@@ -16,7 +16,7 @@ class Deactivate
         $sql = "TRUNCATE TABLE `{$table}`";
         $wpdb->query( $sql );
 
-    
+        flush_rewrite_rules();
     }
 
 }
