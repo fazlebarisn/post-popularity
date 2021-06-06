@@ -24,6 +24,7 @@ if( file_exists(dirname( __FILE__ ). '/vendor/autoload.php')){
 	require_once dirname( __FILE__ ). '/vendor/autoload.php';
 }
 
+// Define a table name. when we activate plugin, postpopularity table will create.
 const TABLE_NAME = 'postpopularity';
 
 // Active Plugin
