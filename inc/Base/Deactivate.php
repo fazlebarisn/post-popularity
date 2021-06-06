@@ -2,7 +2,7 @@
 
 namespace Inc\Base;
 
-class Dactivate
+class Deactivate
 {
 
     public static function deactivate(){
@@ -11,10 +11,10 @@ class Dactivate
             return;
         }
 
-        global $wpdb;
-        $table = $wpdb->prefix.TABLE_NAME;
-        $sql = "TRUNCATE TABLE `{$table}`";
-        $wpdb->query( $sql );
+        // global $wpdb;
+        // $table = $wpdb->prefix.TABLE_NAME;
+        // $sql = "TRUNCATE TABLE `{$table}`";
+        // $wpdb->query( $sql );
 
     
     }
