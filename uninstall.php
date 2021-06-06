@@ -4,9 +4,6 @@ if( !defined( 'WP_UNINSTALL_PLUGIN' )){
 	die;
 }
 
-// Define the table name
-define( 'TABLE_NAME' , 'postpopularity' );
-
 if( ! current_user_can( 'activate_plugins') )
 	return;
 

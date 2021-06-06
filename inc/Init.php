@@ -15,6 +15,7 @@ final class Init
 		return[	
 			Base\Enqueue::class,
 			Base\LikeDislike::class,
+			Base\LikeDislikeAction::class,
 		];
 	}
 
