@@ -24,21 +24,39 @@ class Admin
                 'icon_url' => '',
                 'position' => 110
             ],
+        ];
+
+        $this->subpages = [
             [
-                'page_title' => 'Fbs page 2',
-                'menu_title' => 'Fbs menu 2',
+                'parent_slug' => 'like_dislike_menu',
+                'page_title' => 'Custom Post',
+                'menu_title' => 'Cpt',
                 'capability' => 'manage_options',
-                'menu_slug' => 'like_dislike_menu2',
-                'callback' => function(){ echo"hey hey"; },
-                'icon_url' => '',
-                'position' => 9
-            ]
+                'menu_slug' => 'likey_cpt',
+                'callback' => function(){ echo"hey cpt"; }
+            ],
+            [
+                'parent_slug' => 'like_dislike_menu',
+                'page_title' => 'Create new',
+                'menu_title' => 'New',
+                'capability' => 'manage_options',
+                'menu_slug' => 'likey_new',
+                'callback' => function(){ echo"hey new"; }
+            ],
+            [
+                'parent_slug' => 'like_dislike_menu',
+                'page_title' => 'Taxonomy',
+                'menu_title' => 'Tax',
+                'capability' => 'manage_options',
+                'menu_slug' => 'likey_tax',
+                'callback' => function(){ echo"hey tax"; }
+            ],
         ];
 
     }
 
     public function register()
     {
-        $this->settings->addPages( $this->pages )->register();
+        $this->settings->addPages( $this->pages )->withSubpages('Dashbord')->addSubpages( $this->subpages )->register();
     }
 }
