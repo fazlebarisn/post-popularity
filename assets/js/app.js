@@ -1,6 +1,6 @@
 jQuery(function($){
     $('#like_dislike a').on('click', function(){
-
+        
         let state = $(this).data('val');
 
         $.ajax({
