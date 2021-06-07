@@ -14,6 +14,7 @@ final class Init
 	public static function get_services(){
 		return[	
 			Base\Enqueue::class,
+			Api\SettingApi::class,
 			LikeDislike\LikeDislike::class,
 			LikeDislike\LikeDislikeAction::class,
 		];
