@@ -5,7 +5,6 @@ namespace Inc\Api;
 class SettingApi
 {
     public $admin_pages = array();
-    //public $pages = array();
 
     public function register(){
 

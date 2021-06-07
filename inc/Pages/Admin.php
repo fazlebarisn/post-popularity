@@ -39,7 +39,6 @@ class Admin
 
     public function register()
     {
-
         $this->settings->addPages( $this->pages )->register();
     }
 }
