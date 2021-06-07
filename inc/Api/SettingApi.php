@@ -14,7 +14,7 @@ class SettingApi
         }
     }
 
-    public function addPages( array $pages){
+    public function addPages( array $pages ){
 
         $this->admin_pages = $pages;
         return $this;
