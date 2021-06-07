@@ -4,18 +4,28 @@ namespace Inc\Api;
 
 class SettingApi
 {
+    public $admin_pages = array();
+    //public $pages = array();
 
     public function register(){
-        add_action( 'admin_menu', array( $this ,'fbs_dev_munu' ) );
+
+        if( ! empty( $this->admin_pages ) ){
+            add_action( 'admin_menu', array( $this ,'AddAdminMenu' ) );
+        }
     }
 
-    function fbs_dev_munu(){
-        add_menu_page( 'Fbs Dev', 'Fbs Dev Options', 'manage_options', 'fbs_dev_options', array( $this ,'fbs_dev_menu_func'), '', null );
+    public function addPages( array $pages){
+
+        $this->admin_pages = $pages;
+        return $this;
 
     }
 
-    function fbs_dev_menu_func(){
-        echo "Oho hha d";
+    public function AddAdminMenu(){
+
+        foreach( $this->admin_pages as $page ){
+            add_menu_page( $page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'], $page['callback'], $page['icon_url'], $page['position'] );
+        }
     }
 
 }
