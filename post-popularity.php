@@ -11,7 +11,7 @@ Version: 1.0.4
 Author: Fazle Bari
 Author URI: https://github.com/fazlebarisn/
 Licence: GPL Or leater
-Text Domain: post-popularity
+Text Domain: post-popularity 
 */
 
 /*
