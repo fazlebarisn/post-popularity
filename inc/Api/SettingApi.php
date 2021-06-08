@@ -9,6 +9,7 @@ class SettingApi
 
     public function register(){
 
+        // admin_menu is an action for add menu page. 
         if( ! empty( $this->admin_pages ) ){
             add_action( 'admin_menu', array( $this ,'AddAdminMenu' ) );
         }
@@ -16,6 +17,7 @@ class SettingApi
 
     public function addPages( array $pages ){
 
+        // pass $pages array from Admin class. inc/Pages
         $this->admin_pages = $pages;
         return $this;
 
@@ -50,10 +52,7 @@ class SettingApi
 
     public function addSubpages( array $pages ){
 
-        //$this->admin_subpages = $pages;
-        // echo "<pre>";
-        // var_dump($this->admin_subpages);
-        // echo "</pre>";
+        // marge $admin_subpages array with $pages array
         $this->admin_subpages = array_merge( $this->admin_subpages , $pages );
         return $this;
 

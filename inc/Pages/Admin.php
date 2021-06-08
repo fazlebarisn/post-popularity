@@ -8,12 +8,35 @@ class Admin
 {
 
     public $settings;
-    public $pages;
+    public $pages = array();
+    public $subpages = array();
 
-    function __construct()
+    public function register()
     {
+        /*
+            ** create new instance of SettingApi class. SettingApi call has hook and action that will
+            ** active all menu page and submenu pagea
+        */
         $this->settings = new SettingApi;
 
+        // setPages() methord actually an array of pages
+        $this->setPages();
+
+        // setSubpages() methord actually an array of subpages
+        $this->setSubpages();
+
+        /*
+            ** Here all magic happen. This is methord chaning. Here i have first call addPages() methord
+            ** then withSubpages(), addSubpages() and then finally register()
+             ** all methord from SettingApi class
+        */
+        $this->settings->addPages( $this->pages )->withSubpages('Dashbord')->addSubpages( $this->subpages )->register();
+
+    }
+
+    public function setPages(){
+
+        // if need new menu page, just add another arrry. That will be it, nothing more. 
         $this->pages = [
             [
                 'page_title' => 'Fbs page',
@@ -24,8 +47,12 @@ class Admin
                 'icon_url' => '',
                 'position' => 110
             ],
-        ];
+        ];  
+    }
 
+    public function setSubpages(){
+
+        // if you want to add more subpage just add new array, that's it. don't need to write anything.
         $this->subpages = [
             [
                 'parent_slug' => 'like_dislike_menu',
@@ -52,11 +79,5 @@ class Admin
                 'callback' => function(){ echo"hey tax"; }
             ],
         ];
-
-    }
-
-    public function register()
-    {
-        $this->settings->addPages( $this->pages )->withSubpages('Dashbord')->addSubpages( $this->subpages )->register();
     }
 }
