@@ -7,7 +7,7 @@
 Plugin Name: Fbs Post Popularity
 Plugin URI: https://www.chitabd.com/
 Description: My New Plugin
-Version: 1.0.0
+Version: 1.0.1
 Author: Fazle Bari
 Author URI: https://www.chitabd.com/
 Licence: GPL Or leater
