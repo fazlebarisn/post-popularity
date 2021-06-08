@@ -2,12 +2,15 @@
 
 namespace Inc\Pages;
 
-use \Inc\Api\SettingApi;
+use Inc\Api\SettingApi;
+use Inc\Base\BaseController;
+use Inc\Api\Callbacks\AdminCallbacks;
 
-class Admin
+class Admin extends BaseController
 {
 
     public $settings;
+    public $callback;
     public $pages = array();
     public $subpages = array();
 
@@ -18,6 +21,9 @@ class Admin
             ** active all menu page and submenu pagea
         */
         $this->settings = new SettingApi;
+
+        // create new instance of AdminCallback calss
+        $this->callback = new AdminCallbacks;
 
         // setPages() methord actually an array of pages
         $this->setPages();
@@ -43,7 +49,7 @@ class Admin
                 'menu_title' => 'Fbs menu',
                 'capability' => 'manage_options',
                 'menu_slug' => 'like_dislike_menu',
-                'callback' => function(){ echo"hey"; },
+                'callback' => array( $this->callback, 'adminDashboard' ),
                 'icon_url' => '',
                 'position' => 110
             ],
