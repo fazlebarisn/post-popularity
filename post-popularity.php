@@ -7,8 +7,8 @@
 Plugin Name: Fbs Post Popularity
 Plugin URI: https://github.com/fazlebarisn/post-popularity
 Description: This plugin help you to like or dislike a post
-Version: 1.1.0
-Author: Fazle Bari
+Version: 1.0.2
+Author: Fazle Bari 
 Author URI: https://github.com/fazlebarisn/
 Licence: GPL Or leater
 Text Domain: post-popularity
