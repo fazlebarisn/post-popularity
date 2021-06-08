@@ -14,7 +14,7 @@ class SettingApi
 
     }
 
-    function fbs_dev_menu_func(){
+    function fbs_dev_menu_func(){  
         echo "Oho hha d";
     }
 
