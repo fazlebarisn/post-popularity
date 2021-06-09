@@ -7,11 +7,15 @@ class SettingApi
     public $admin_pages = array();
     public $admin_subpages = array();
 
+    public $settings = array();
+    public $sections = array();
+    public $fields = array();
+
     public function register(){
 
         // admin_menu is an action for add menu page. 
         if( ! empty( $this->admin_pages ) ){
-            add_action( 'admin_menu', array( $this ,'AddAdminMenu' ) );
+            add_action( 'admin_menu', array( $this ,'addAdminMenu' ) );
         }
     }
 
@@ -58,7 +62,7 @@ class SettingApi
 
     }
 
-    public function AddAdminMenu(){
+    public function addAdminMenu(){
 
         foreach( $this->admin_pages as $page ){
             add_menu_page( $page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'], $page['callback'], $page['icon_url'], $page['position'] );
@@ -69,5 +73,30 @@ class SettingApi
         }
 
     }
+
+    /**
+     * Register custom filed a complax prosess. Need the thing to register one custom field. register_setting, add_settings_section and add_settings_field
+     * 
+     * So again i will pass an array and and register all custom fiels
+     */
+    public function registerCustomFields(){
+
+        // Register setting
+        foreach( $this->settings as $setting ){
+            register_setting( $setting['option_group'], $setting['option_name'], isset( $setting['callback'] ) ? $setting['callback'] : '' );
+        }
+
+        // Add setting section
+        foreach( $this->sections as $section ){
+            add_settings_section( $section['id'], $section['title'], isset( $section['callback'] ) ? $section['callback'] : '', $section['page'] );
+        }
+
+        // Add settings field
+        foreach( $this->fields as $field ){
+            add_settings_field( $field['id'], $field['title'], isset( $field['callback'] ) ? $field['callback'] : '', $field['page'], $field['section'], isset( $field['args'] ) ? $field['args'] : '' );
+        }
+
+    }
+
 
 }
