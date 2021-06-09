@@ -75,10 +75,33 @@ class SettingApi
     }
 
     /**
-     * Register custom filed a complax prosess. Need the thing to register one custom field. register_setting, add_settings_section and add_settings_field
+     * Register custom filed a complax prosess. Need 3 thing to register one custom field. register_setting, add_settings_section and add_settings_field
      * 
      * So again i will pass an array and and register all custom fiels
      */
+
+    public function setSettings( array $settings ){
+
+        // pass $settings array from Admin class. inc/settings
+        $this->settings = $settings;
+        return $this;
+
+    }
+    public function setSections( array $sections ){
+
+        // pass $settings array from Admin class. inc/settings
+        $this->sections = $sections;
+        return $this;
+
+    }
+    public function setFields( array $fields ){
+
+        // pass $settings array from Admin class. inc/settings
+        $this->fields = $fields;
+        return $this;
+
+    }
+
     public function registerCustomFields(){
 
         // Register setting
