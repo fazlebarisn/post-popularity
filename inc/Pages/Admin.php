@@ -91,15 +91,27 @@ class Admin extends BaseController
         ];
     }
 
-    // passing array for register custom fields in Api/SettingsApi
+    
+    /**
+     * passing array for register custom fields in Api/SettingsApi
+     * 
+     * If i need a new field
+     * 1. Add an array in setSettings methord
+     * 2. Add an array for field in  setFields methord
+     * 3. update callback, where the html codes
+     */
 
     public function setSettings(){
 
         $args = array(
             array(
                 'option_group' => 'like_dislike_options_group',
-                'option_name' => 'text_example',
+                'option_name' => 'first_name',
                 'callback' => array( $this->callback , 'likeDislikeOptionsGroup' ),
+            ),
+            array(
+                'option_group' => 'like_dislike_options_group',
+                'option_name' => 'last_name',
             )
         );
 
@@ -125,17 +137,29 @@ class Admin extends BaseController
     public function setFields(){
 
         $args = array(
+
             array(
-                'id' => 'text_example', // same as option_name
-                'title' => 'Text example', 
-                'callback' => array( $this->callback , 'likeDislikeTextExample' ),
+                'id' => 'first_name', // same as option_name
+                'title' => 'First Name', 
+                'callback' => array( $this->callback , 'likeDislikeFirstName' ),
                 'page' => 'like_dislike_menu', //menu page slug, which page this section should print
                 'section' => 'like_dislike_admin_index', // same id as section
                 'args' => array(
-                    'label_for' => 'text_example',
+                    'label_for' => 'first_name',
                     'class' => 'example-class'
-                )
-            )
+                    )
+                ),
+            array(
+                'id' => 'last_name', // same as option_name
+                'title' => 'Last Name', 
+                'callback' => array( $this->callback , 'likeDislikeLastName' ),
+                'page' => 'like_dislike_menu', //menu page slug, which page this section should print
+                'section' => 'like_dislike_admin_index', // same id as section
+                'args' => array(
+                    'label_for' => 'last_name',
+                    'class' => 'example-class'
+                    )
+                ),
         );
 
         $this->settings->setFields( $args ); // this methord dicliar in Api/SettingsApi 

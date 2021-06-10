@@ -21,9 +21,15 @@ class AdminCallbacks extends BaseController
         echo "Check this";
     }
 
-    public function likeDislikeTextExample(){
+    public function likeDislikeFirstName(){
 
-        $value = esc_attr( get_option('text_example') );
-        echo '<input type="text" name="text_example" class="regular-text" value="'.$value.'"> placeholder="Input your name"';
+        $value = esc_attr( get_option('first_name') );
+        echo '<input type="text" name="first_name" class="regular-text" value="'.$value.'" placeholder="Input your first name" >';
+    }
+
+    public function likeDislikeLastName(){
+
+        $value = esc_attr( get_option('last_name') );
+        echo '<input type="text" name="last_name" class="regular-text" value="'.$value.'" placeholder="Input your last name" >';
     }
 }
