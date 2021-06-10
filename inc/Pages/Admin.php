@@ -31,6 +31,10 @@ class Admin extends BaseController
         // setSubpages() methord actually an array of subpages
         $this->setSubpages();
 
+        // 
+        $this->setSettings();
+        $this->setSections();
+        $this->setFields();
         /*
             ** Here all magic happen. This is methord chaning. Here i have first call addPages() methord
             ** then withSubpages(), addSubpages() and then finally register()
@@ -85,5 +89,56 @@ class Admin extends BaseController
                 'callback' => function(){ echo"hey tax"; }
             ],
         ];
+    }
+
+    // passing array for register custom fields in Api/SettingsApi
+
+    public function setSettings(){
+
+        $args = array(
+            array(
+                'option_group' => 'like_dislike_options_group',
+                'option_name' => 'text_example',
+                'callback' => array( $this->callback , 'likeDislikeOptionsGroup' ),
+            )
+        );
+
+        $this->settings->setSettings( $args ); // this methord dicliar in Api/SettingsApi 
+
+    }
+
+    public function setSections(){
+
+        $args = array(
+            array(
+                'id' => 'like_dislike_admin_index',
+                'title' => 'Settings',
+                'callback' => array( $this->callback , 'likeDislikeAdminSection' ),
+                'page' => 'like_dislike_menu', // menu page slug, which page this section should print
+            )
+        );
+
+        $this->settings->setSections( $args ); // this methord dicliar in Api/SettingsApi 
+
+    }
+
+    public function setFields(){
+
+        $args = array(
+            array(
+                'id' => 'text_example', // same as option_name
+                'title' => 'Text example', 
+                'callback' => array( $this->callback , 'likeDislikeTextExample' ),
+                'page' => 'like_dislike_menu', //menu page slug, which page this section should print
+                'section' => 'like_dislike_admin_index', // same id as section
+                'args' => array(
+                    'label_for' => 'text_example',
+                    'class' => 'example-class'
+                )
+            )
+        );
+
+        $this->settings->setFields( $args ); // this methord dicliar in Api/SettingsApi 
+
     }
 }
